@@ -63,6 +63,14 @@ repos:
                 claude_app/public/js/lib/.*
             )$
 
+  - repo: local
+    hooks:
+    - id: check-max-lines
+      name: Check Max Lines
+      entry: python scripts/check_max_lines.py
+      language: python
+      types: [python]
+
 ci:
     autoupdate_schedule: weekly
     skip: []

@@ -5,6 +5,10 @@ app_description = "Testing App for coding creation through AI"
 app_email = "yesha.krishna@8848digital.com"
 app_license = "mit"
 
+custom_fixtures = [{"dt": "Custom Field", "filters": {"module": "Claude App"}}]
+
+commands = ["claude_app.commands.export_fixtures.export_fixtures"]
+
 # Apps
 # ------------------
 
@@ -197,7 +201,7 @@ app_license = "mit"
 # Request Events
 # ----------------
 # before_request = ["claude_app.utils.before_request"]
-# after_request = ["claude_app.utils.after_request"]
+after_request = ["claude_app.utils.api_handlers.response_formatter.format_frappe_response_to_custom"]
 
 # Job Events
 # ----------
