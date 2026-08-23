@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Supplier-procurement_eligibility_section",
+    "dt": "Supplier",
+    "fieldname": "procurement_eligibility_section",
+    "fieldtype": "Section Break",
+    "label": "Procurement Eligibility",
+    "insert_after": "supplier_details",
+    "module": "Claude App"
+  },
+  {
+    "name": "Supplier-supplier_grade",
+    "dt": "Supplier",
+    "fieldname": "supplier_grade",
+    "fieldtype": "Select",
+    "label": "Supplier Grade",
+    "options": "\nGreen\nYellow\nRed",
+    "insert_after": "procurement_eligibility_section",
+    "permlevel": 1,
+    "module": "Claude App"
+  },
+  {
+    "name": "Supplier-grade_effective_from",
+    "dt": "Supplier",
+    "fieldname": "grade_effective_from",
+    "fieldtype": "Date",
+    "label": "Grade Effective From",
+    "insert_after": "supplier_grade",
+    "permlevel": 1,
+    "module": "Claude App"
+  },
+  {
+    "name": "Supplier-grade_effective_to",
+    "dt": "Supplier",
+    "fieldname": "grade_effective_to",
+    "fieldtype": "Date",
+    "label": "Grade Effective To",
+    "insert_after": "grade_effective_from",
+    "permlevel": 1,
+    "module": "Claude App"
+  },
+  {
+    "name": "Supplier-grade_remarks",
+    "dt": "Supplier",
+    "fieldname": "grade_remarks",
+    "fieldtype": "Small Text",
+    "label": "Grade Remarks",
+    "insert_after": "grade_effective_to",
+    "permlevel": 1,
+    "module": "Claude App"
+  },
+  {
+    "name": "Purchase Order-supplier_grade",
+    "dt": "Purchase Order",
+    "fieldname": "supplier_grade",
+    "fieldtype": "Select",
+    "label": "Supplier Grade",
+    "options": "\nGreen\nYellow\nRed",
+    "read_only": 1,
+    "insert_after": "supplier",
+    "module": "Claude App"
+  },
+  {
+    "name": "Purchase Invoice-supplier_grade",
+    "dt": "Purchase Invoice",
+    "fieldname": "supplier_grade",
+    "fieldtype": "Select",
+    "label": "Supplier Grade",
+    "options": "\nGreen\nYellow\nRed",
+    "read_only": 1,
+    "insert_after": "supplier",
+    "module": "Claude App"
+  },
+  {
+    "name": "Purchase Receipt-supplier_grade",
+    "dt": "Purchase Receipt",
+    "fieldname": "supplier_grade",
+    "fieldtype": "Select",
+    "label": "Supplier Grade",
+    "options": "\nGreen\nYellow\nRed",
+    "read_only": 1,
+    "insert_after": "supplier",
+    "module": "Claude App"
+  },
+  {
+    "name": "Request for Quotation-supplier_grade",
+    "dt": "Request for Quotation",
+    "fieldname": "supplier_grade",
+    "fieldtype": "Select",
+    "label": "Supplier Grade",
+    "options": "\nGreen\nYellow\nRed",
+    "read_only": 1,
+    "insert_after": "supplier",
+    "module": "Claude App"
+  },
+  {
+    "name": "Supplier Quotation-supplier_grade",
+    "dt": "Supplier Quotation",
+    "fieldname": "supplier_grade",
+    "fieldtype": "Select",
+    "label": "Supplier Grade",
+    "options": "\nGreen\nYellow\nRed",
+    "read_only": 1,
+    "insert_after": "supplier",
+    "module": "Claude App"
+  }
+]

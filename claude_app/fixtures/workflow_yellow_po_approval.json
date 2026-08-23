@@ -1,0 +1,62 @@
+{
+  "name": "Yellow Supplier PO Approval",
+  "document_type": "Purchase Order",
+  "is_active": 1,
+  "send_email_alert": 1,
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": "0",
+      "style": "Primary",
+      "allow_edit": "Purchase User"
+    },
+    {
+      "state": "Pending Approval",
+      "doc_status": "0",
+      "style": "Warning",
+      "allow_edit": "Purchase Manager"
+    },
+    {
+      "state": "Approved",
+      "doc_status": "1",
+      "style": "Success",
+      "allow_edit": "Purchase Manager"
+    },
+    {
+      "state": "Rejected",
+      "doc_status": "0",
+      "style": "Danger",
+      "allow_edit": "Purchase User"
+    }
+  ],
+  "transitions": [
+    {
+      "action": "Submit for Approval",
+      "state": "Draft",
+      "next_state": "Pending Approval",
+      "allowed": "Purchase User",
+      "allow_self_approval": 0
+    },
+    {
+      "action": "Approve",
+      "state": "Pending Approval",
+      "next_state": "Approved",
+      "allowed": "Purchase Manager",
+      "allow_self_approval": 0
+    },
+    {
+      "action": "Reject",
+      "state": "Pending Approval",
+      "next_state": "Rejected",
+      "allowed": "Purchase Manager",
+      "allow_self_approval": 0
+    },
+    {
+      "action": "Revise",
+      "state": "Rejected",
+      "next_state": "Draft",
+      "allowed": "Purchase User",
+      "allow_self_approval": 1
+    }
+  ]
+}

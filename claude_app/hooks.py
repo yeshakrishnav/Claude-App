@@ -3,9 +3,12 @@ app_title = "Claude App"
 app_publisher = "yeshakrishnav"
 app_description = "Testing App for coding creation through AI"
 app_email = "yesha.krishna@8848digital.com"
-app_license = "mit"
+app_license = "Proprietary"
 
-custom_fixtures = [{"dt": "Custom Field", "filters": {"module": "Claude App"}}]
+custom_fixtures = [
+    {"dt": "Custom Field", "filters": {"module": "Claude App"}},
+    {"dt": "Workflow", "filters": [["name", "in", ["Yellow Supplier PO Approval", "Yellow Supplier SQ Approval"]]]},
+]
 
 commands = ["claude_app.commands.export_fixtures.export_fixtures"]
 
@@ -141,13 +144,41 @@ commands = ["claude_app.commands.export_fixtures.export_fixtures"]
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+    # Supplier master — grade field validation
+    "Supplier": {
+        "validate": "claude_app.claude_app.customization.supplier.supplier.validate",
+    },
+    # Buying transactions — Red-supplier block on validate; Yellow-supplier block on before_submit
+    "Purchase Order": {
+        "validate": "claude_app.claude_app.customization.purchase_order.purchase_order.validate",
+        "before_submit": "claude_app.claude_app.customization.purchase_order.purchase_order.before_submit",
+    },
+    "Purchase Invoice": {
+        "validate": "claude_app.claude_app.customization.purchase_invoice.purchase_invoice.validate",
+    },
+    "Purchase Receipt": {
+        "validate": "claude_app.claude_app.customization.purchase_receipt.purchase_receipt.validate",
+    },
+    "Request for Quotation": {
+        "validate": "claude_app.claude_app.customization.request_for_quotation.request_for_quotation.validate",
+    },
+    "Supplier Quotation": {
+        "validate": "claude_app.claude_app.customization.supplier_quotation.supplier_quotation.validate",
+        "before_submit": "claude_app.claude_app.customization.supplier_quotation.supplier_quotation.before_submit",
+    },
+}
+
+# Client Scripts are shipped via the customization/ .js files and loaded
+# through Frappe's standard doctype_js hook below.
+doctype_js = {
+    "Supplier": "claude_app/customization/supplier/supplier.js",
+    "Purchase Order": "claude_app/customization/purchase_order/purchase_order.js",
+    "Purchase Invoice": "claude_app/customization/purchase_invoice/purchase_invoice.js",
+    "Purchase Receipt": "claude_app/customization/purchase_receipt/purchase_receipt.js",
+    "Request for Quotation": "claude_app/customization/request_for_quotation/request_for_quotation.js",
+    "Supplier Quotation": "claude_app/customization/supplier_quotation/supplier_quotation.js",
+}
 
 # Scheduled Tasks
 # ---------------
@@ -250,4 +281,3 @@ after_request = ["claude_app.utils.api_handlers.response_formatter.format_frappe
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
-
